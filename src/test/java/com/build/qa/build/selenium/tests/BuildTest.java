@@ -1,6 +1,5 @@
 package com.build.qa.build.selenium.tests;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
@@ -27,7 +26,6 @@ public class BuildTest extends BaseFramework {
 	 * @assert: That the product page we land on is what is expected by checking the product title
 	 * @difficulty Easy
 	 */
-	@Ignore
 	@Test
 	public void searchForProductLandsOnCorrectProduct() {
 		// TODO: Implement this test
@@ -39,7 +37,6 @@ public class BuildTest extends BaseFramework {
 	 * @assert: the product that is added to the cart is what is expected
 	 * @difficulty Easy-Medium
 	 */
-	@Ignore
 	@Test
 	public void addProductToCartFromCategoryDrop() {
 		// TODO: Implement this test
@@ -51,7 +48,6 @@ public class BuildTest extends BaseFramework {
 	 * @assert that the "Cart Sent" success message is displayed after emailing the cart
 	 * @difficulty Medium-Hard
 	 */
-	@Ignore
 	@Test
 	public void addProductToCartAndEmailIt() {
 		// TODO: Implement this test
@@ -64,7 +60,6 @@ public class BuildTest extends BaseFramework {
 	 * is correct, such that each facet selection is narrowing the product count.
 	 * @difficulty Hard
 	 */
-	@Ignore
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() {
 		// TODO: Implement this test
