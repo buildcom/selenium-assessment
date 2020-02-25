@@ -1,0 +1,17 @@
+config*
+.settings/
+target/
+artifacts/
+.classpath
+.DS_Store
+*.iml
+resources/
+.project
+*.out
+*.log
+.factory path
+.apt_generated
+.credentials/
+.sonarlint/
+.metadata/
+.idea
