@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.assertj.core.api.JUnitSoftAssertions;
 import org.junit.After;
 import org.junit.Before;
@@ -47,9 +48,10 @@ public abstract class BaseFramework {
 	@Before
 	public void setUpBefore() {
 		DesiredCapabilities capabilities;
-		// Which driver to use? 
+		// Which driver to use?
 		if (DRIVER_CHROME.equalsIgnoreCase(configuration.getProperty("BROWSER"))) {
 			capabilities = DesiredCapabilities.chrome();
+			WebDriverManager.chromedriver().version("78").setup();
 			driver = new ChromeDriver(capabilities);
 		} else if (DRIVER_FIREFOX.equalsIgnoreCase(configuration.getProperty("BROWSER"))) {
 			capabilities = DesiredCapabilities.firefox();
@@ -63,8 +65,8 @@ public abstract class BaseFramework {
 	protected WebDriver getDriver() {
 		return driver;
 	}
-	
-	protected String getConfiguration(String config) { 
+
+	protected String getConfiguration(String config) {
 		return configuration.getProperty(config);
 	}
 
