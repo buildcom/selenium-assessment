@@ -51,7 +51,7 @@ public abstract class BaseFramework {
 		// Which driver to use?
 		if (DRIVER_CHROME.equalsIgnoreCase(configuration.getProperty("BROWSER"))) {
 			capabilities = DesiredCapabilities.chrome();
-			WebDriverManager.chromedriver().version("78").setup();
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(capabilities);
 		} else if (DRIVER_FIREFOX.equalsIgnoreCase(configuration.getProperty("BROWSER"))) {
 			capabilities = DesiredCapabilities.firefox();
