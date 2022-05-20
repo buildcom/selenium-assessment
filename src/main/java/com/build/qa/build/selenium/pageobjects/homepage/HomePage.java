@@ -9,14 +9,14 @@ import com.build.qa.build.selenium.pageobjects.BasePage;
 
 public class HomePage extends BasePage {
 	
-	private By buildThemeBody;
+	private By homePageWrapper;
 	
 	public HomePage(WebDriver driver, Wait<WebDriver> wait) {
 		super(driver, wait);
-		buildThemeBody = By.cssSelector("body.build-theme");
+		homePageWrapper = By.cssSelector("#wrapper.homepage");
 	}
 	
-	public boolean onBuildTheme() { 
-		return wait.until(ExpectedConditions.presenceOfElementLocated(buildThemeBody)) != null;
+	public boolean onHomePage() {
+		return wait.until(ExpectedConditions.presenceOfElementLocated(homePageWrapper)) != null;
 	}
 }
