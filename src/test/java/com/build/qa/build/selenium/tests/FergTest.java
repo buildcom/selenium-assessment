@@ -124,7 +124,7 @@ public class FergTest extends BaseFramework {
 		CommonMethods.waitAndClick(searchPage.chromesCategory);
 
 		softly.assertThat(searchPage.productCount.getText().startsWith("569"));//sorry for hardCoding.
-
+		softly.assertThat(searchPage.productCount.getText().startsWith("569"));//sorry for hardCoding.
 
 	}
 }
