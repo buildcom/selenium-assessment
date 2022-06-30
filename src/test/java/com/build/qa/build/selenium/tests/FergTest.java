@@ -1,9 +1,14 @@
 package com.build.qa.build.selenium.tests;
 
+import com.build.qa.build.selenium.CommonMethods.CommonMethods;
+import com.build.qa.build.selenium.pageobjects.pages.ProductPage;
+import com.build.qa.build.selenium.pageobjects.pages.SearchPage;
 import org.junit.Test;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
-import com.build.qa.build.selenium.pageobjects.homepage.HomePage;
+import com.build.qa.build.selenium.pageobjects.pages.HomePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FergTest extends BaseFramework {
 
@@ -29,6 +34,23 @@ public class FergTest extends BaseFramework {
 	@Test
 	public void searchForProductLandsOnCorrectProduct() {
 		// TODO: Implement this test
+		driver.get(getConfiguration("HOMEPAGE"));
+		HomePage homePage=new HomePage(driver,wait);
+
+		CommonMethods.sendKey(homePage.search_field, "Moen m6702b");
+		CommonMethods.waitAndClick(homePage.searchButton);
+
+		ProductPage productPage=new ProductPage(driver,wait);
+		String productBrand="Moen";
+		String productId="m6702bn";
+
+
+		softly.assertThat(productPage.onProductDetailPage()).isTrue();
+		softly.assertThat(productPage.productBrand.getText().equals(productBrand));
+		softly.assertThat(productPage.productId.getText().equals(productId));
+
+
+
 	}
 
 	/**
@@ -40,7 +62,16 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartFromCategoryDrop() {
-		// TODO: Implement this test
+		driver.get(getConfiguration("BathroomSinks"));
+		SearchPage searchPage=new SearchPage(driver,wait);
+		softly.assertThat(searchPage.onSearchPage());
+		CommonMethods.waitAndClick(searchPage.BrassTonessCheckBox);
+
+
+
+		searchPage.firstItem.click();
+
+
 	}
 
 	/**
@@ -51,7 +82,26 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void addMultipleCartItemsAndChangeQuantity() {
-		// TODO: Implement this test
+		driver.get(getConfiguration("HOMEPAGE"));
+		HomePage homePage=new HomePage(driver,wait);
+		CommonMethods.sendKey(homePage.search_field, "Minka Aire 8015985");
+		homePage.searchButton.click();
+
+		ProductPage productPage=new ProductPage(driver,wait);
+
+		wait.until(ExpectedConditions.elementToBeClickable(productPage.quantityBtnMinus));
+		wait.until(ExpectedConditions.elementToBeClickable(productPage.quantityBtnPlus));
+
+		CommonMethods.waitAndClick(productPage.quantityBtnPlus);
+		CommonMethods.waitAndClick(productPage.quantityBtnPlus);
+		CommonMethods.waitAndClick(productPage.quantityBtnMinus);
+
+		CommonMethods.waitAndClick(productPage.addToCart);
+
+		CommonMethods.waitAndClick(productPage.viewCard);
+
+
+
 	}
 
 	/**
@@ -63,6 +113,18 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() {
-		// TODO: Implement this test
+
+		driver.get(getConfiguration("BathroomSinks"));
+		SearchPage searchPage=new SearchPage(driver,wait);
+		softly.assertThat(searchPage.onSearchPage());
+		searchPage.brandShowMore.click();
+
+
+		CommonMethods.waitAndClick(searchPage.brizoBrand);
+		CommonMethods.waitAndClick(searchPage.chromesCategory);
+
+		softly.assertThat(searchPage.productCount.getText().startsWith("569"));//sorry for hardCoding.
+
+
 	}
 }

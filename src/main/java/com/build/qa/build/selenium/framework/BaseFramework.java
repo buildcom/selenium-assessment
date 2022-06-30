@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class BaseFramework {
 	protected WebDriver driver;
-	protected Wait<WebDriver> wait;
+	public static Wait<WebDriver> wait;
 	private static final Logger LOG = LoggerFactory.getLogger(BaseFramework.class);
 	private static final String CONFIG_FILE = "./conf/automation.properties";
 	private static final String DRIVER_FIREFOX = "firefox";
