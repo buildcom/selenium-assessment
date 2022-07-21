@@ -84,8 +84,10 @@ public class FergTest extends BaseFramework {
 	public void addMultipleCartItemsAndChangeQuantity() {
 		driver.get(getConfiguration("HOMEPAGE"));
 		HomePage homePage=new HomePage(driver,wait);
-		CommonMethods.sendKey(homePage.search_field, "Minka Aire 8015985");
-		homePage.searchButton.click();
+//		CommonMethods.sendKey(homePage.search_field, "Minka Aire 8015985");
+//		homePage.searchButton.click();
+
+		homePage.searchAnItem("Minka Aire 8015985");
 
 		ProductPage productPage=new ProductPage(driver,wait);
 
@@ -100,6 +102,11 @@ public class FergTest extends BaseFramework {
 
 		CommonMethods.waitAndClick(productPage.viewCard);
 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 
 
 	}

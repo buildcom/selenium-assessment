@@ -1,5 +1,6 @@
 package com.build.qa.build.selenium.pageobjects.pages;
 
+import com.build.qa.build.selenium.CommonMethods.CommonMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,4 +30,16 @@ public class HomePage extends BasePage {
 
 	@FindBy(xpath = "//a[@class=\"fg-icon-search\" and @href=\"javascript:;\"]")
 	public WebElement searchButton;
+
+
+
+	public static void searchAnItem(String itemName){
+
+		HomePage homePage=new HomePage(driver,wait);
+
+		CommonMethods.sendKey(homePage.search_field, "Minka Aire 8015985");
+
+		homePage.searchButton.click();
+
+	}
 }
