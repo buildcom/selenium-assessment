@@ -1,5 +1,8 @@
 package com.build.qa.build.selenium.tests;
 
+import com.build.qa.build.selenium.pageobjects.homepage.CartPage;
+import com.build.qa.build.selenium.pageobjects.homepage.CatagoryPage;
+import com.build.qa.build.selenium.pageobjects.homepage.ProductPage;
 import org.junit.Test;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
@@ -17,7 +20,7 @@ public class FergTest extends BaseFramework {
 		HomePage homePage = new HomePage(driver, wait);
 
 		softly.assertThat(homePage.onHomePage())
-			.as("The website should load up with the Build.com desktop theme.")
+			.as("The website should load up with the Ferguson.com desktop theme.")
 			.isTrue();
 	}
 
@@ -27,8 +30,10 @@ public class FergTest extends BaseFramework {
 	 * @difficulty Easy
 	 */
 	@Test
-	public void searchForProductLandsOnCorrectProduct() {
-		// TODO: Implement this test
+	public void searchForProductLandsOnCorrectProduct() throws InterruptedException {
+		driver.get(getConfiguration("HOMEPAGE"));
+		ProductPage productPage = new ProductPage(driver,wait);
+		productPage.ProductSearch();
 	}
 
 	/**
@@ -39,8 +44,10 @@ public class FergTest extends BaseFramework {
 	 * @difficulty Easy-Medium
 	 */
 	@Test
-	public void addProductToCartFromCategoryDrop() {
-		// TODO: Implement this test
+	public void addProductToCartFromCategoryDrop() throws InterruptedException {
+		CatagoryPage CTPage = new CatagoryPage(driver,wait);
+		CTPage.VerifyCatagoryItem();
+
 	}
 
 	/**
@@ -50,8 +57,14 @@ public class FergTest extends BaseFramework {
 	 * @difficulty Medium-Hard
 	 */
 	@Test
-	public void addMultipleCartItemsAndChangeQuantity() {
-		// TODO: Implement this test
+	public void addMultipleCartItemsAndChangeQuantity() throws InterruptedException {
+		driver.get(getConfiguration("HOMEPAGE"));
+		ProductPage productPage = new ProductPage(driver,wait);
+		productPage.ProductSearch();
+		productPage.Addtocart();
+		CartPage cartPage = new CartPage(driver,wait);
+		cartPage.CartUpdate();
+
 	}
 
 	/**
@@ -62,7 +75,8 @@ public class FergTest extends BaseFramework {
 	 * @difficulty Hard
 	 */
 	@Test
-	public void facetNarrowBysResultInCorrectProductCounts() {
-		// TODO: Implement this test
+	public void facetNarrowBysResultInCorrectProductCounts() throws InterruptedException {
+		CatagoryPage CTpage = new CatagoryPage(driver,wait);
+		CTpage.FilterCheck();
 	}
 }
