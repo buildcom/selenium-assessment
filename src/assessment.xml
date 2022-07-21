@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Ferguson TEST.">
+<!--    <test name="Assessment">-->
+<!--        <classes>-->
+<!--            <class name="com.build.qa.build.selenium.tests.FergTest"></class>-->
+
+<!--           -->
+
+
+
+<!--        </classes>-->
+<!--    </test>-->
+
+
+    <test name="Regression1" preserve-order="false">
+        <classes>
+
+            <class name="com.build.qa.build.selenium.tests.FergTest">
+                <methods>
+                    <include name="navigateToHomePage" />
+
+                </methods>
+            </class>
+
+
+        </classes>
+    </test>
+
+
+</suite>
