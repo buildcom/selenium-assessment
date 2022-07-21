@@ -39,6 +39,18 @@ public class ProductPage extends BasePage {
     public WebElement viewCard;
 
 
+    @FindBy(xpath = "//*[@class='price__main price-value']")
+    public WebElement priceOfItem;
+
+
+    @FindBy(xpath = "(//div[@class='total-price']/span)[1]")
+    public WebElement totalPrice$;
+
+
+    @FindBy(xpath = "//h1[@class='product__name']")
+    public WebElement itemName;
+
+
 
 
 

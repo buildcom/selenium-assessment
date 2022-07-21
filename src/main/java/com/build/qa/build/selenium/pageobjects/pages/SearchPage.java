@@ -45,5 +45,9 @@ public class SearchPage extends BasePage {
     public WebElement productCount;
 
 
+    @FindBy(xpath = "//*[@class='sr-fg-content-name js-compare-search-item-name' and text()='KOHLER Devonshire® Two Handle Widespread Bathroom Sink Faucet with Metal Pop-Up Drain in Vibrant Polished Brass']")
+    public WebElement fItem;
+
+
 
 }

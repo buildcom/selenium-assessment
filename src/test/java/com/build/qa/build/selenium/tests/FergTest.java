@@ -1,14 +1,17 @@
 package com.build.qa.build.selenium.tests;
 
-import com.build.qa.build.selenium.CommonMethods.CommonMethods;
 import com.build.qa.build.selenium.pageobjects.pages.ProductPage;
 import com.build.qa.build.selenium.pageobjects.pages.SearchPage;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
 import com.build.qa.build.selenium.pageobjects.pages.HomePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+
+
+
+import static com.build.qa.build.selenium.CommonMethods.CommonMethods.*;
 
 public class FergTest extends BaseFramework {
 
@@ -30,24 +33,26 @@ public class FergTest extends BaseFramework {
 	 * Search for the Moen m6702bn from the search bar
 	 * @assert: That the product page we land on is what is expected by checking the product brand and product id
 	 * @difficulty Easy
+	 *
+	 *
 	 */
 	@Test
 	public void searchForProductLandsOnCorrectProduct() {
-		// TODO: Implement this test
+
 		driver.get(getConfiguration("HOMEPAGE"));
 		HomePage homePage=new HomePage(driver,wait);
-
-		CommonMethods.sendKey(homePage.search_field, "Moen m6702b");
-		CommonMethods.waitAndClick(homePage.searchButton);
-
 		ProductPage productPage=new ProductPage(driver,wait);
+
 		String productBrand="Moen";
 		String productId="m6702bn";
+		homePage.searchAnItem(productBrand+" "+productId);
+		waitPageLoad();
 
+		softly.assertThat(productPage.productBrand.getText().
+				equals(productBrand)).as("Product brand is "+productBrand).isTrue();
 
-		softly.assertThat(productPage.onProductDetailPage()).isTrue();
-		softly.assertThat(productPage.productBrand.getText().equals(productBrand));
-		softly.assertThat(productPage.productId.getText().equals(productId));
+		softly.assertThat(productPage.productId.getText().contains(productId.toUpperCase()));
+
 
 
 
@@ -59,18 +64,51 @@ public class FergTest extends BaseFramework {
 	 * and add the second product on the search results (Category Drop) page to the cart.
 	 * @assert: the product that is added to the cart is what is expected
 	 * @difficulty Easy-Medium
+	 * TODO: Completed, PASSED
 	 */
 	@Test
 	public void addProductToCartFromCategoryDrop() {
 		driver.get(getConfiguration("BathroomSinks"));
 		SearchPage searchPage=new SearchPage(driver,wait);
+		ProductPage productPage=new ProductPage(driver,wait);
 		softly.assertThat(searchPage.onSearchPage());
-		CommonMethods.waitAndClick(searchPage.BrassTonessCheckBox);
 
 
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		waitAndClick(searchPage.BrassTonessCheckBox);
 
-		searchPage.firstItem.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 
+		String nameOfItemClick= searchPage.fItem.getText();
+
+		waitPageLoad();
+
+		waitAndClick(searchPage.fItem);
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		String productBrand=productPage.productBrand.getText();
+		String itemName=productPage.itemName.getText();
+
+		Assert.assertTrue(nameOfItemClick.equals(productBrand+" "+itemName));
+		softly.assertThat(nameOfItemClick.equals(productBrand+" "+itemName));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 
 	}
 
@@ -79,34 +117,47 @@ public class FergTest extends BaseFramework {
 	 * change the quantity of each finish on the cart page
 	 * @assert that the product and cart total update as expected when the quantity is changed
 	 * @difficulty Medium-Hard
+	 *
+	 *
 	 */
 	@Test
 	public void addMultipleCartItemsAndChangeQuantity() {
 		driver.get(getConfiguration("HOMEPAGE"));
 		HomePage homePage=new HomePage(driver,wait);
-//		CommonMethods.sendKey(homePage.search_field, "Minka Aire 8015985");
-//		homePage.searchButton.click();
-
+		ProductPage productPage=new ProductPage(driver,wait);
 		homePage.searchAnItem("Minka Aire 8015985");
 
-		ProductPage productPage=new ProductPage(driver,wait);
-
-		wait.until(ExpectedConditions.elementToBeClickable(productPage.quantityBtnMinus));
-		wait.until(ExpectedConditions.elementToBeClickable(productPage.quantityBtnPlus));
-
-		CommonMethods.waitAndClick(productPage.quantityBtnPlus);
-		CommonMethods.waitAndClick(productPage.quantityBtnPlus);
-		CommonMethods.waitAndClick(productPage.quantityBtnMinus);
-
-		CommonMethods.waitAndClick(productPage.addToCart);
-
-		CommonMethods.waitAndClick(productPage.viewCard);
-
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
+		waitPageLoad();
+		int quantity=1;
+		double priceOfItem=getDoubleValue(productPage.priceOfItem.getAttribute("content"));
+		waitAndClick(productPage.quantityBtnPlus);
+		quantity++;
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		waitAndClick(productPage.addToCart);
+		waitPageLoad();
+		waitAndClick(productPage.viewCard);
+		waitPageLoad();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		double totalPriceAfterQuan=getTotalPrice(productPage.totalPrice$.getText());
+
+		softly.assertThat(totalPriceAfterQuan==priceOfItem *quantity);
 
 
 	}
@@ -117,6 +168,8 @@ public class FergTest extends BaseFramework {
 	 * @assert that the correct filters are being narrowed, and the result count
 	 * is correct, such that each facet selection is narrowing the product count.
 	 * @difficulty Hard
+	 *
+	 *
 	 */
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() {
@@ -124,14 +177,47 @@ public class FergTest extends BaseFramework {
 		driver.get(getConfiguration("BathroomSinks"));
 		SearchPage searchPage=new SearchPage(driver,wait);
 		softly.assertThat(searchPage.onSearchPage());
-		searchPage.brandShowMore.click();
+
+		waitPageLoad();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		waitAndClick(searchPage.brandShowMore);
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		waitAndClick(searchPage.brizoBrand);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		waitAndClick(searchPage.chromesCategory);
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 
 
-		CommonMethods.waitAndClick(searchPage.brizoBrand);
-		CommonMethods.waitAndClick(searchPage.chromesCategory);
+		softly.assertThat(searchPage.productCount.getText().startsWith("569"));
+		softly.assertThat(searchPage.productCount.getText().startsWith("569"));
 
-		softly.assertThat(searchPage.productCount.getText().startsWith("569"));//sorry for hardCoding.
-		softly.assertThat(searchPage.productCount.getText().startsWith("569"));//sorry for hardCoding.
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 
 	}
 }
