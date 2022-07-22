@@ -1,19 +1,16 @@
 # build-selenium-test
-Test Assessment for Build.com Automation Engineers
+Test Automation Assessment
 
 Basic Requirements: 
-* Clone this repository to your local machine.
-* Complete the unimplemented @Tests in BuildTest.java to the best of your abilities while using Java and Selenium. If you can't complete each @Test, that is OK, just show us what you can do.
-* Correctly use Page Objects and AssertJ to the best of your abilities.
-* Make sure the code compiles without issue when running "mvn test", and that all tests pass. 
-* Upload completed assessment to your own repository and share the link to your repository so we can review your code.
+* Create your own personal GitHub repository, if you do not have one already.
+* Clone this repository to your local machine or your own personal GitHub repository.
+* Complete the unimplemented @Tests in FergTest.java to the best of your abilities, using Java and Selenium WebDriver.
+* We have completed first @Test as an example. You only need to complete remaining 4, following format of our example.
+* Correctly use Page Objects and AssertJ to the best of your abilities. Use of correct assertions in every @Test is requried.
+* Read comments carefully in FergTest.java to complete the TODO sections. 
+* Make sure the code compiles without issue when running "mvn test" and/or from your favorite IDE, and that all tests pass. 
+* Upload completed assessment to your own repository and share the link to your repository so we can review your code.  Our system does not accept emials with java files or zip files containing java files.
+* Do not try to push your code to our repository, you will not be able to.
 
-Bonus points:
+Bonus points (be impressive):
 * Make the tests work with multiple browsers (Firefox, Safari, etc.)
-
-More bonus points (be impressive):
-* Make the tests work with Appium: using Safari on iOS and/or Chrome on Android. 
-
-Notes:
-* Ignore/skip CAPTCHA page (if encountered), submit code as if it does not exist or wait for user to complete it.
-* Take your time.
