@@ -23,7 +23,7 @@ public class FergTest extends BaseFramework {
 
 	/**
 	 * Search for the Moen m6702bn from the search bar
-	 * @assert: That the product page we land on is what is expected by checking the product brand and product id
+	 * @assert that the product page shown/displayed is what is expected by checking the product brand and product id
 	 * @difficulty Easy
 	 */
 	@Test
@@ -35,7 +35,7 @@ public class FergTest extends BaseFramework {
 	 * Go to the Bathroom Sinks category directly
 	 * (https://www.ferguson.com/category/bathroom-plumbing/bathroom-faucets/bathroom-sink-faucets/_/N-zbq4i3)
 	 * and add the second product on the search results (Category Drop) page to the cart.
-	 * @assert: the product that is added to the cart is what is expected
+	 * @assert that the expected product is added to the cart
 	 * @difficulty Easy-Medium
 	 */
 	@Test
