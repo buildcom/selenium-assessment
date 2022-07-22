@@ -70,10 +70,10 @@ public abstract class BaseFramework {
 		return configuration.getProperty(config);
 	}
 
-	@After
-	public void tearDownAfter() {
-		LOG.info("Quitting driver.");
-		driver.quit();
-		driver = null;
-	}
+//	@After
+//	public void tearDownAfter() {
+//		LOG.info("Quitting driver.");
+//		driver.quit();
+//		driver = null;
+//	}
 }
