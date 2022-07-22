@@ -28,7 +28,7 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void searchForProductLandsOnCorrectProduct() {
-		// TODO: Implement this test
+		// Task #1: Implement this test
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartFromCategoryDrop() {
-		// TODO: Implement this test
+		// Task #2: Implement this test
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void addMultipleCartItemsAndChangeQuantity() {
-		// TODO: Implement this test
+		// Task #3: Implement this test
 	}
 
 	/**
@@ -63,6 +63,6 @@ public class FergTest extends BaseFramework {
 	 */
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() {
-		// TODO: Implement this test
+		// Task #4: Implement this test
 	}
 }
