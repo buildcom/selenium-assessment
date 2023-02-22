@@ -2,7 +2,7 @@
 //Pipeline Syntax Resource: https://jenkins.io/doc/book/pipeline/syntax/
 //nodejs used in declarative: https://github.com/buildcom/react-supply-store/blob/master/Jenkinsfile
 //maven used in declarative: https://github.com/buildcom/customer-services/blob/master/Jenkinsfile
-//Most projects on leroy.fergcs.com are now declarative, so those can be used as reference for your project
+//Most projects on leroy-npn.fergcs.com are now declarative, so those can be used as reference for your project
 //Or you can ask your fellow SREs for assistance :)
 
 pipeline {
